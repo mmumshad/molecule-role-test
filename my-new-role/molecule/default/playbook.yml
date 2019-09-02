@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+  - name: Molecule Hello World!
+    debug:
+      msg: Hello, World!
+  # roles:
+  #   - role: my-new-role
