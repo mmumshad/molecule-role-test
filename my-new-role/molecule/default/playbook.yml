@@ -1,9 +1,9 @@
 ---
 - name: Converge
   hosts: all
+  gather_facts: no
   tasks:
   - name: Molecule Hello World!
-    debug:
-      msg: Hello, World!
+    shell: echo "sdfds" > /tmp/tempfile
   # roles:
   #   - role: my-new-role

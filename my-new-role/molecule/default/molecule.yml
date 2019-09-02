@@ -6,8 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: instance1
+    image: mmumshad/ubuntu-ssh-enabled
+  - name: instance2
+    image: mmumshad/ubuntu-ssh-enabled
 provisioner:
   name: ansible
   lint:
