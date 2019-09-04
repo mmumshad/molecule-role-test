@@ -1,0 +1,16 @@
+---
+- name: Make a copy of /etc/hosts file on each node
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Copy /etc/hosts file to /tmp/hosts
+    command: cp /etc/hosts /tmp/hosts
+
+  - name: Add line to /etc/hosts file
+    command: echo "10.10.10.10  phantom-server" >> /etc/hosts
+
+  - name: Run script
+    shell: /opt/myna-script.sh
+
+  # - name: Run local script on remote hosts
+  #   script: assets/local-myna.sh

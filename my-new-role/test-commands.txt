@@ -1,0 +1,33 @@
+docker run -d --name=molecule-tester --rm -it \
+    -v "$(pwd)":/tmp/$(basename "${PWD}"):ro \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -w /tmp/$(basename "${PWD}") \
+    quay.io/ansible/molecule:2.20 \
+    tail -f /dev/null
+
+# For parallel execution
+docker exec molecule-tester pip install pytest-xdist
+
+docker exec molecule-tester molecule create --scenario-name playbook-1
+
+docker exec molecule-tester molecule test --destroy=never
+
+
+docker exec molecule-tester molecule converge --scenario-name playbook-1
+
+docker exec molecule-tester molecule verify --scenario-name playbook-1
+
+
+
+
+#
+
+docker exec molecule-tester molecule destroy --scenario-name playbook-1
+docker exec molecule-tester molecule converge --scenario-name playbook-1
+docker exec molecule-tester molecule verify --scenario-name playbook-1
+
+docker exec molecule-tester molecule destroy --scenario-name playbook-1
+docker exec molecule-tester molecule test --scenario-name playbook-1 --destroy=never
+
+
+docker exec -e TEST_DIRECTORY=tests/tests-1 molecule-tester molecule verify --scenario-name playbook-1

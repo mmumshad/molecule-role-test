@@ -1,0 +1,6 @@
+Q1. Develop a playbook to create a copy of the /etc/hosts file in all hosts to location /tmp/hosts
+Q2. Update the playbook to add a line "10.10.10.10  phantom-server" to the original /etc/hosts file after making a copy.
+    Note: We will see easier and better of ways doing this later, when we learn more about modules.
+Q3. Add a play to the playbook to run the script /opt/myna-script.sh on the servers.
+    This script creates a file /tmp/myna.out with certain characters.
+Q4. Add a play to the playbook to execute a script /opt/local-myna.sh on the remote hosts. This script is located on the Ansible Controller machie.

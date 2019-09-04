@@ -1,0 +1,9 @@
+---
+- name: Make a copy of /etc/hosts file on each node
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Copy /etc/hosts file to /tmp/hosts
+    command: cp /etc/hosts /tmp/hosts
+  # roles:
+  #   - role: my-new-role

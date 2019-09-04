@@ -1,0 +1,49 @@
+---
+scenario:
+  name: playbook-1
+  test_sequence:
+    - lint
+    # - dependency
+    - cleanup
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    # - idempotence
+    # - side_effect
+    - verify
+    # - cleanup
+    # - destroy
+dependency:
+  name: galaxy
+driver:
+  name: docker
+  safe_files:
+    - assets/myna-script.sh
+lint:
+  name: yamllint
+platforms:
+  - name: web1
+    image: kodekloud/ubuntu-ssh-enabled
+    pre_build_image: True
+  - name: web2
+    image: kodekloud/ubuntu-ssh-enabled
+    pre_build_image: True
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: prepare-book.yaml
+  lint:
+    name: ansible-lint
+    enabled: false
+verifier:
+  name: testinfra
+  directory: ${TEST_DIRECTORY}
+  options:
+    n: 2
+    quiet: true
+    W: ignore::DeprecationWarning
+  lint:
+    name: flake8
+    enabled: false

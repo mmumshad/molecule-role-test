@@ -1,0 +1,25 @@
+---
+- name: Reset nodes to previous state
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Remove /tmp/hosts file
+    file:
+      path: /tmp/hosts
+      state: absent
+
+  - name: Remove line from /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      state: absent
+      regexp: '10.10.10.10\s+phantom-server'
+
+  - name: Remove /tmp/myna.out file
+    file:
+      path: /tmp/myna.out
+      state: absent
+
+  - name: Remove /tmp/local-myna.out file
+    file:
+      path: /tmp/local-myna.out
+      state: absent
