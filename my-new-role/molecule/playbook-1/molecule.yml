@@ -34,6 +34,7 @@ provisioner:
   name: ansible
   playbooks:
     prepare: prepare-book.yaml
+    cleanup: prepare-book.yaml
   lint:
     name: ansible-lint
     enabled: false

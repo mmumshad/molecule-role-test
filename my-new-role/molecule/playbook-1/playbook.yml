@@ -12,5 +12,5 @@
   - name: Run script
     shell: /opt/myna-script.sh
 
-  # - name: Run local script on remote hosts
-  #   script: assets/local-myna.sh
+  - name: Run local script on remote hosts
+    script: assets/local-myna.sh
